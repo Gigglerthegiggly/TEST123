@@ -803,7 +803,7 @@ addEventListener('keyup',e=>{keys[e.code]=false;});
 function lock(){if(isTouch)return;try{const p=renderer.domElement.requestPointerLock();if(p&&p.catch)p.catch(()=>{});}catch(e){}}
 const locked=()=>document.pointerLockElement===renderer.domElement;
 document.addEventListener('pointerlockchange',()=>{
-  if(!locked()&&state==='play'&&!isTouch&&$('settingsPanel').hidden&&$('shopPanel').hidden&&$('customPanel').hidden){
+  if(!locked()&&state==='play'&&!isTouch&&!buildMode&&$('settingsPanel').hidden&&$('shopPanel').hidden&&$('customPanel').hidden){
     state='pause';firing=false;
     const t = i18n[settings.lang];
     showOverlay(t.pauseTitle, t.pauseDesc, t.resume);
