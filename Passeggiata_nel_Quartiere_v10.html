@@ -1,4 +1,18 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
+/* Ultimate progression HUD */
+#metaHud{position:fixed;left:12px;bottom:150px;width:220px;padding:11px 13px;z-index:3;pointer-events:none}
+#metaHud .metaTop{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:800;letter-spacing:.06em}
+#rankName{color:var(--gold);font-family:var(--f-display)}
+#xpTrack{height:7px;background:rgba(255,255,255,.14);border-radius:8px;overflow:hidden;margin:7px 0 9px}
+#xpFill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--cyan));transition:width .25s}
+#contractTitle{font-size:10px;opacity:.7;text-transform:uppercase;letter-spacing:.1em}
+#contractLine{font-size:12px;margin-top:3px}
+#contractTrack{height:5px;background:rgba(255,255,255,.13);border-radius:8px;overflow:hidden;margin-top:6px}
+#contractFill{height:100%;width:0;background:var(--gold);transition:width .25s}
+#streakLabel{color:#ff9d45;font-weight:800}
+@media(max-width:560px){#metaHud{left:10px;bottom:158px;width:172px;padding:8px 10px}#metaHud .metaTop{font-size:10px}#contractLine{font-size:10px}#contractTitle{font-size:9px}}
+@media(max-height:650px){#metaHud{display:none}}
+</style></head><body>
 <title>Passeggiata nel Quartiere - Ultimate Edition</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
@@ -143,6 +157,13 @@ body.ads #cross{width:12px;height:12px}body.ads #cross::before{left:5px;height:1
 <button id="ads" class="tbtn touch-only" type="button">AIM</button>
 <button id="settingsBtn" type="button">⚙ SETTINGS</button>
 <div id="level" class="panel">LEVEL 1 · NOVICE</div>
+<div id="metaHud" class="panel">
+  <div class="metaTop"><span id="rankName">ROOKIE I</span><span id="streakLabel">🔥 0 STREAK</span></div>
+  <div id="xpTrack"><div id="xpFill"></div></div>
+  <div id="contractTitle">DAILY CONTRACT</div>
+  <div id="contractLine">Get 8 eliminations · 0/8</div>
+  <div id="contractTrack"><div id="contractFill"></div></div>
+</div>
 
 <!-- Settings Panel -->
 <div id="settingsPanel" hidden><div class="card panel">
@@ -279,6 +300,14 @@ let ads=false, mouseADS=false, touchADS=false, jumpVelocity=0, jumpHeight=0;
 let level=1, gamepadPrev={jump:false,reload:false};
 let rebindingKey = false;
 let currentWeapon = 'pistol';
+// Career progression persists locally between visits.
+let careerXP = Math.max(0, +(localStorage.getItem('pnq_xp')||0));
+let killStreak = 0;
+let bestStreak = Math.max(0, +(localStorage.getItem('pnq_bestStreak')||0));
+const dailyStamp = new Date().toLocaleDateString('en-CA');
+let dailyKills = localStorage.getItem('pnq_dailyDate')===dailyStamp ? +(localStorage.getItem('pnq_dailyKills')||0) : 0;
+let dailyClaimed = localStorage.getItem('pnq_dailyClaimed')===dailyStamp;
+const DAILY_GOAL = 8;
 const $=id=>document.getElementById(id);
 
 /* ---------- Localization ---------- */
@@ -975,6 +1004,43 @@ $('go').addEventListener('click',()=>{
 let msgT=0,pickT=0,hitT=0;
 function flashMsg(t,d){$('msg').textContent=t;msgT=d;}
 function pickMsg(t){$('pick').textContent=t;pickT=1.4;}
+function rankInfo(){
+  const names=['ROOKIE','SCOUT','RANGER','VANGUARD','ACE','ELITE','LEGEND'];
+  const rank=Math.floor(careerXP/500);
+  const tier=['I','II','III','IV','V'][Math.floor((careerXP%500)/100)];
+  return {name:rank<names.length?names[rank]+' '+tier:'LEGEND X',progress:careerXP%500};
+}
+function updateProgressHUD(){
+  const r=rankInfo();
+  $('rankName').textContent=r.name;
+  $('xpFill').style.width=(r.progress/500*100)+'%';
+  $('streakLabel').textContent='🔥 '+killStreak+' STREAK';
+  $('contractLine').textContent=dailyClaimed?'✓ CONTRACT COMPLETE · +250 COINS':'Get '+DAILY_GOAL+' eliminations · '+Math.min(dailyKills,DAILY_GOAL)+'/'+DAILY_GOAL;
+  $('contractFill').style.width=(Math.min(dailyKills,DAILY_GOAL)/DAILY_GOAL*100)+'%';
+}
+function registerElimination(rival){
+  killStreak++;
+  bestStreak=Math.max(bestStreak,killStreak);
+  localStorage.setItem('pnq_bestStreak',bestStreak);
+  const headBonus=rival.lastHitHead?50:0;
+  const streakBonus=Math.min(100,Math.max(0,killStreak-1)*10);
+  const gained=100+headBonus+streakBonus;
+  careerXP+=gained;
+  localStorage.setItem('pnq_xp',careerXP);
+  playerCoins+=30+streakBonus;
+  dailyKills++;
+  localStorage.setItem('pnq_dailyDate',dailyStamp);
+  localStorage.setItem('pnq_dailyKills',dailyKills);
+  let message=(rival.lastHitHead?'🎯 HEADSHOT! ':'ELIMINATION! ')+'+'+gained+' XP · '+killStreak+'× STREAK';
+  if(!dailyClaimed&&dailyKills>=DAILY_GOAL){
+    dailyClaimed=true;playerCoins+=250;
+    localStorage.setItem('pnq_dailyClaimed',dailyStamp);
+    message='🏆 DAILY CONTRACT COMPLETE! +250 COINS';
+  }
+  localStorage.setItem('pnq_coins',playerCoins);
+  flashMsg(message,1.8);
+  updateProgressHUD();
+}
 function updateHUD(){
   const t = i18n[settings.lang];
   const lvlName = customConfig.active ? 'CUSTOM SANDBOX ⚔️' : diffLevels[Math.min(settings.difficulty-1,diffLevels.length-1)].name;
@@ -985,6 +1051,7 @@ function updateHUD(){
   $('ammoTxt').textContent=player.reloadT>0?t.reloadProgress:`${player.mag} / ${player.res}`;
   $('coinsTxt').textContent=`🪙 ${playerCoins}`;
   $('sYou').textContent=score.you;$('sThem').textContent=score.them;
+  updateProgressHUD();
 }
 function hurtFX(){
   const v=$('vign');v.style.transition='none';v.style.opacity=.95;
@@ -1029,6 +1096,7 @@ function playerShoot(){
       const hitRival = rivals.find(r=>r.mesh.userData.hit.includes(o));
       if(hitRival && hitRival.alive){
         const isHead = o.name==='head';
+        hitRival.lastHitHead=isHead;
         const dist = camera.position.distanceTo(end);
         let dmg = wData.dmg;
 
@@ -1063,8 +1131,7 @@ function playerShoot(){
 function enemyDies(targetRival){
   targetRival.alive=false;targetRival.deadT=0;
   score.you++;
-  playerCoins += 30;
-  localStorage.setItem('pnq_coins', playerCoins);
+  registerElimination(targetRival);
   updateHUD();
   const t = i18n[settings.lang];
   flashMsg(t.elimEnemy, 1.4);
@@ -1076,6 +1143,7 @@ function enemyDies(targetRival){
 }
 
 function playerDies(){
+  killStreak=0;
   player.alive=false;score.them++;updateHUD();
   const t = i18n[settings.lang];
   endRound(t.elimPlayer);
