@@ -171,6 +171,7 @@ body.ads #cross{width:12px;height:12px}body.ads #cross::before{left:5px;height:1
   <div class="setting"><label for="langSelect" id="lblLang">Language</label><select id="langSelect"><option value="en">English 🇬🇧</option><option value="it">Italiano 🇮🇹</option></select></div>
   <div class="setting"><label for="diffSelect" id="lblDiff">Duel Difficulty</label><select id="diffSelect"><option value="1">1. Novice</option><option value="2">2. Veteran</option><option value="3">3. Elite</option><option value="4">4. Legendary</option><option value="5">5. Nightmare 💀</option></select></div>
   <div class="setting"><label for="themeSelect" id="lblTheme">Graphics Preset</label><select id="themeSelect"><option value="day">Daylight Neighborhood</option><option value="neon">Neon Night Cyber</option><option value="synth">Synthwave Sunset</option><option value="retro">Retro Foggy</option></select></div>
+  <div class="setting"><label for="shaderSelect" id="lblShaders">Screen Shaders</label><select id="shaderSelect"><option value="off">Off · Original</option><option value="cinematic">Cinematic</option><option value="retro">Retro Pixel</option><option value="noir">Noir / Black &amp; White</option><option value="dream">Dream / Chromatic</option><option value="crt">CRT Arcade</option></select></div>
   <div class="setting"><label for="crossColor" id="lblCrossColor">Crosshair Color</label><select id="crossColor"><option value="#ffffff">White</option><option value="#7cc04a">Neon Green</option><option value="#00f0ff">Cyber Cyan</option><option value="#ff0055">Hot Pink</option><option value="#ffd700">Gold</option></select></div>
   <div class="setting"><label for="crossStyle" id="lblCross">Crosshair Style</label><select id="crossStyle"><option value="default">Cross</option><option value="dot">Dot</option><option value="circle">Circle</option></select></div>
   <div class="setting"><label for="soundStyle" id="lblSoundStyle">Hit Sound FX</label><select id="soundStyle"><option value="classic">Classic Arcade</option><option value="laser">Futuristic Laser</option><option value="heavy">Heavy Kick</option></select></div>
@@ -279,6 +280,7 @@ const settings={
   crossColor: localStorage.getItem('pnq_cross_col') || '#ffffff',
   soundStyle: localStorage.getItem('pnq_sound') || 'classic',
   theme: localStorage.getItem('pnq_theme') || 'day',
+  shader: localStorage.getItem('pnq_shader') || 'off',
   difficulty: +localStorage.getItem('pnq_diff') || 1,
   settingsKey: savedSettingsKey
 };
@@ -410,6 +412,78 @@ renderer.setSize(innerWidth,innerHeight);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 document.body.prepend(renderer.domElement);
+
+// Full-screen shader pass. The game scene is rendered to a texture, then
+// this lightweight pass grades the final image without changing game assets.
+const shaderTarget = new THREE.WebGLRenderTarget(
+  Math.max(1,Math.floor(innerWidth*renderer.getPixelRatio())),
+  Math.max(1,Math.floor(innerHeight*renderer.getPixelRatio())),
+  {minFilter:THREE.LinearFilter,magFilter:THREE.LinearFilter,format:THREE.RGBAFormat,depthBuffer:true}
+);
+const shaderScene = new THREE.Scene();
+const shaderCamera = new THREE.OrthographicCamera(-1,1,1,-1,0,1);
+const shaderMaterial = new THREE.ShaderMaterial({
+  uniforms:{
+    tDiffuse:{value:shaderTarget.texture},
+    uResolution:{value:new THREE.Vector2(innerWidth*renderer.getPixelRatio(),innerHeight*renderer.getPixelRatio())},
+    uTime:{value:0},
+    uMode:{value:0}
+  },
+  vertexShader:`varying vec2 vUv;
+    void main(){vUv=uv;gl_Position=vec4(position,1.0);}`,
+  fragmentShader:`uniform sampler2D tDiffuse;
+    uniform vec2 uResolution;
+    uniform float uTime;
+    uniform int uMode;
+    varying vec2 vUv;
+    vec3 rgbToLuma(vec3 c){return vec3(dot(c,vec3(.299,.587,.114)));}
+    void main(){
+      vec2 uv=vUv;
+      if(uMode==2){
+        vec2 pixel=vec2(3.0)/max(uResolution,vec2(1.0));
+        uv=floor(uv/pixel)*pixel+pixel*.5;
+      }
+      vec3 color=texture2D(tDiffuse,uv).rgb;
+      if(uMode==1){
+        float l=dot(color,vec3(.2126,.7152,.0722));
+        color=mix(vec3(l),color,1.16);
+        color=(color-.5)*1.13+.5;
+        color*=vec3(1.045,1.015,.965);
+        float vign= smoothstep(.92,.22,length((vUv-.5)*vec2(1.0,.82)));
+        color*=mix(.72,1.08,vign);
+      }else if(uMode==2){
+        color=floor(color*5.0)/5.0;
+        color=mix(vec3(dot(color,vec3(.299,.587,.114))),color,.82);
+      }else if(uMode==3){
+        float l=dot(color,vec3(.299,.587,.114));
+        color=vec3(l);
+        color=(color-.42)*1.28+.42;
+        color*=smoothstep(.9,.2,length((vUv-.5)*vec2(1.0,.8)))*.38+.62;
+      }else if(uMode==4){
+        float shift=1.35/uResolution.x;
+        color.r=texture2D(tDiffuse,uv+vec2(shift,0.0)).r;
+        color.b=texture2D(tDiffuse,uv-vec2(shift,0.0)).b;
+        color=mix(color,vec3(color.r*.92,color.g,color.b*1.08),.28);
+        color*=.96+.04*sin(uTime*1.4);
+      }else if(uMode==5){
+        float scan=.92+.08*sin(vUv.y*uResolution.y*1.15);
+        float vign=smoothstep(.95,.25,length((vUv-.5)*vec2(1.0,.82)));
+        color*=scan*(.72+.28*vign);
+        color+=vec3(.012,.018,.025);
+      }
+      gl_FragColor=vec4(color,1.0);
+      #include <tonemapping_fragment>
+      #include <encodings_fragment>
+    }`
+});
+shaderScene.add(new THREE.Mesh(new THREE.PlaneGeometry(2,2),shaderMaterial));
+const shaderModes={off:0,cinematic:1,retro:2,noir:3,dream:4,crt:5};
+function applyShader(mode){
+  if(!Object.prototype.hasOwnProperty.call(shaderModes,mode))mode='off';
+  settings.shader=mode;
+  shaderMaterial.uniforms.uMode.value=shaderModes[mode];
+  localStorage.setItem('pnq_shader',mode);
+}
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x9fc6e6);
@@ -865,6 +939,10 @@ $('diffSelect').addEventListener('change',e=>{
 
 $('themeSelect').value = settings.theme;
 $('themeSelect').addEventListener('change',e=>applyTheme(e.target.value));
+
+$('shaderSelect').value = settings.shader;
+applyShader(settings.shader);
+$('shaderSelect').addEventListener('change',e=>applyShader(e.target.value));
 
 $('crossColor').value = settings.crossColor;
 $('crossColor').addEventListener('change',e=>{
@@ -1367,13 +1445,23 @@ function frame(t){const dt=Math.min(.05,(t-last)/1000);last=t;
   for(let i=tracers.length-1;i>=0;i--){tracers[i].t-=dt;tracers[i].l.material.opacity=Math.max(0,tracers[i].t/.07);if(tracers[i].t-.07<=0){scene.remove(tracers[i].l);tracers[i].l.geometry.dispose();tracers.splice(i,1);}}
   msgT-=dt;$('msg').style.opacity=msgT>0?1:0;pickT-=dt;$('pick').style.opacity=pickT>0?1:0;
   hitT-=dt;$('cross').classList.toggle('hit',hitT>0);
-  renderer.render(scene,camera);
+  if(settings.shader==='off'){
+    renderer.setRenderTarget(null);
+    renderer.render(scene,camera);
+  }else{
+    shaderMaterial.uniforms.uTime.value=t*.001;
+    renderer.setRenderTarget(shaderTarget);
+    renderer.clear();
+    renderer.render(scene,camera);
+    renderer.setRenderTarget(null);
+    renderer.render(shaderScene,shaderCamera);
+  }
   drawMap();
   requestAnimationFrame(frame);}
 
 camera.position.set(player.x,curY+EYE,player.z);camera.rotation.set(0,player.yaw,0);
 requestAnimationFrame(frame);
-addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);const w=Math.max(1,Math.floor(innerWidth*renderer.getPixelRatio())),h=Math.max(1,Math.floor(innerHeight*renderer.getPixelRatio()));shaderTarget.setSize(w,h);shaderMaterial.uniforms.uResolution.value.set(w,h);});
 })();
 </script>
 </body></html>
