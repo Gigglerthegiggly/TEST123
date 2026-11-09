@@ -810,7 +810,7 @@ document.addEventListener('pointerlockchange',()=>{
   }
 });
 
-renderer.domElement.addEventListener('mousedown',e=>{if(isTouch)return;if(state!=='play')return;if(!locked()){lock();return;}if(e.button===0&&buildMode){placeBuild();return;}if(e.button===0)firing=true;if(e.button===2){mouseADS=true;setADS(true);}});
+renderer.domElement.addEventListener('mousedown',e=>{if(isTouch)return;if(state!=='play')return;if(!locked()&&!buildMode){lock();return;}if(e.button===0&&buildMode){placeBuild();return;}if(e.button===0)firing=true;if(e.button===2){mouseADS=true;setADS(true);}});
 addEventListener('mouseup',e=>{if(e.button===0)firing=false;if(e.button===2){mouseADS=false;setADS(touchADS);}});
 renderer.domElement.addEventListener('contextmenu',e=>e.preventDefault());
 addEventListener('mousemove',e=>{if(locked())look(e.movementX,e.movementY);});
