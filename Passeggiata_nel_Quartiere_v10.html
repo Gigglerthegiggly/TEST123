@@ -1018,6 +1018,7 @@ function updateProgressHUD(){
   $('contractLine').textContent=dailyClaimed?'✓ CONTRACT COMPLETE · +250 COINS':'Get '+DAILY_GOAL+' eliminations · '+Math.min(dailyKills,DAILY_GOAL)+'/'+DAILY_GOAL;
   $('contractFill').style.width=(Math.min(dailyKills,DAILY_GOAL)/DAILY_GOAL*100)+'%';
 }
+function weaponReserveBonus(){return 90;}
 function registerElimination(rival){
   killStreak++;
   bestStreak=Math.max(bestStreak,killStreak);
@@ -1032,6 +1033,19 @@ function registerElimination(rival){
   localStorage.setItem('pnq_dailyDate',dailyStamp);
   localStorage.setItem('pnq_dailyKills',dailyKills);
   let message=(rival.lastHitHead?'🎯 HEADSHOT! ':'ELIMINATION! ')+'+'+gained+' XP · '+killStreak+'× STREAK';
+  // Streak milestones grant tactical boosts so aggressive play has a payoff.
+  if(killStreak===3){
+    player.hp=Math.min(100,player.hp+20);
+    message='⚡ ON A ROLL! +20 HEALTH';
+  }else if(killStreak===5){
+    const weapon=weapons[currentWeapon];
+    const refill=Math.min(weapon.mag-player.mag,player.res);
+    player.mag+=refill;player.res-=refill;
+    message='🔥 UNSTOPPABLE! MAGAZINE REFILLED';
+  }else if(killStreak===10){
+    player.hp=100;player.res=Math.min(240,player.res+weaponReserveBonus());
+    message='👑 LEGENDARY STREAK! FULL HEALTH + AMMO';
+  }
   if(!dailyClaimed&&dailyKills>=DAILY_GOAL){
     dailyClaimed=true;playerCoins+=250;
     localStorage.setItem('pnq_dailyClaimed',dailyStamp);
