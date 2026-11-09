@@ -12,6 +12,16 @@
 #streakLabel{color:#ff9d45;font-weight:800}
 @media(max-width:560px){#metaHud{left:10px;bottom:158px;width:172px;padding:8px 10px}#metaHud .metaTop{font-size:10px}#contractLine{font-size:10px}#contractTitle{font-size:9px}}
 @media(max-height:650px){#metaHud{display:none}}
+
+/* Ultimate main menu */
+.main-menu-overlay{background:radial-gradient(ellipse at 50% 0%,rgba(67,112,70,.35),transparent 58%),linear-gradient(135deg,rgba(3,9,7,.84),rgba(5,14,12,.94))!important;overflow-y:auto;place-items:center;padding-top:18px;padding-bottom:18px}
+.menu-shell{width:min(780px,100%);max-height:min(94dvh,980px);overflow-y:auto;padding:clamp(17px,3vw,30px)!important;text-align:left!important;border:1px solid rgba(172,226,151,.24)!important;background:linear-gradient(145deg,rgba(12,25,19,.97),rgba(5,12,11,.97))!important;box-shadow:0 25px 90px rgba(0,0,0,.65),inset 0 1px rgba(255,255,255,.05)!important}
+.menu-topline{font-size:10px;font-weight:900;letter-spacing:.16em;color:#a8d68c;display:flex;align-items:center;gap:9px;margin-bottom:20px}.menu-live-dot{width:7px;height:7px;border-radius:50%;background:#8cdb59;box-shadow:0 0 12px #8cdb59}.menu-version{margin-left:auto;color:#8a9a8d;font-size:9px}
+.menu-hero{padding:clamp(17px,3vw,27px);border-radius:13px;background:linear-gradient(110deg,rgba(92,146,64,.22),rgba(8,21,17,.18)),repeating-linear-gradient(135deg,rgba(255,255,255,.025) 0 1px,transparent 1px 9px);border:1px solid rgba(255,255,255,.09);position:relative;overflow:hidden}.menu-hero:after{content:'⚔';position:absolute;right:7%;top:8%;font-size:clamp(80px,15vw,150px);color:rgba(183,229,148,.07);transform:rotate(-15deg);pointer-events:none}.menu-kicker{font-size:10px;letter-spacing:.22em;color:#b4e48b;font-weight:900}.menu-hero h1{font-size:clamp(30px,6vw,52px)!important;line-height:.96;letter-spacing:-.05em!important;margin:12px 0 8px!important}.menu-hero h1 em{font-style:normal;color:#a8dc75}.menu-hero .subtitle{font-size:11px;letter-spacing:.18em;margin:12px 0!important;color:#c4d6c7}.menu-hero p{font-size:13px!important;color:#d1ddd2;max-width:430px;margin:8px 0 0!important}
+.menu-profile-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}.menu-profile-strip>div,.menu-stat{padding:12px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);border-radius:9px;min-width:0}.menu-profile-strip small,.menu-stat small{display:block;font-size:9px;letter-spacing:.12em;color:#8ea394;font-weight:800;margin-bottom:5px}.menu-profile-strip strong{font-size:clamp(12px,2.3vw,16px);color:#e8f3e8;overflow-wrap:anywhere}
+.menu-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}.menu-action{display:flex;align-items:center;gap:12px;text-align:left;min-width:0;padding:13px 14px;border:1px solid rgba(255,255,255,.1);border-radius:10px;background:rgba(255,255,255,.055);color:#f3f6f1;transition:transform .16s,border-color .16s,background .16s}.menu-action:hover{transform:translateY(-2px);background:rgba(255,255,255,.1);border-color:rgba(167,221,126,.5)}.menu-action b,.menu-action small{display:block}.menu-action b{font-size:12px;letter-spacing:.06em}.menu-action small{font-size:10px;color:#aab9ad;margin-top:4px;line-height:1.35}.menu-action-icon{width:34px;height:34px;flex:0 0 34px;display:grid;place-items:center;border-radius:9px;background:rgba(255,255,255,.08);font-size:19px;color:#b7e88b}.menu-arrow{margin-left:auto;color:#8fae91;font-size:19px}.menu-play{background:linear-gradient(110deg,rgba(124,192,74,.27),rgba(124,192,74,.08));border-color:rgba(124,192,74,.48)}.menu-play .menu-action-icon{background:#8bc95b;color:#12200d}.menu-custom{background:rgba(0,240,255,.055);border-color:rgba(0,240,255,.2)}.menu-new{display:inline-block;margin-top:5px;color:#ffd76a;font-size:9px;font-weight:900;letter-spacing:.08em}.menu-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:15px;padding-top:12px;border-top:1px solid rgba(255,255,255,.09)}.menu-footer .lang-selector{margin:0}.menu-footer>span{font-size:8px;letter-spacing:.1em;color:#778b7c}.menu-old-controls{display:none!important}
+.menu-subpage{padding:6px 0 0}.menu-page-heading>span{font-size:10px;letter-spacing:.2em;color:#a8dc75;font-weight:900}.menu-page-heading h2{font-size:clamp(23px,4vw,34px)!important;margin:8px 0!important}.menu-page-heading p{font-size:12px;color:#aab9ad;margin:0 0 20px}.menu-stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.menu-stat strong{font-size:clamp(16px,3vw,23px);color:#f1f6ed;overflow-wrap:anywhere}.menu-progress-label{display:flex;justify-content:space-between;gap:10px;margin:18px 0 7px;font-size:10px;letter-spacing:.1em;color:#a6b6a8}.menu-progress-label b{color:#e7f3e3}.menu-progress{height:9px;background:rgba(255,255,255,.1);border-radius:9px;overflow:hidden}.menu-progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#7cc04a,#00e0ce);border-radius:9px;transition:width .25s}.menu-sub-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.menu-sub-actions button{flex:1;min-width:150px}.daily-contract-card{display:flex;gap:16px;align-items:center;padding:20px;border:1px solid rgba(255,215,0,.25);border-radius:12px;background:linear-gradient(110deg,rgba(255,215,0,.1),rgba(255,255,255,.025))}.daily-contract-icon{font-size:35px}.daily-contract-card small{font-size:9px;color:#e8c65b;letter-spacing:.14em;font-weight:900}.daily-contract-card h3{font-size:19px;margin:6px 0}.daily-contract-card p{font-size:11px;color:#aab9ad;margin:0}.daily-reward{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:16px;padding:13px;border-radius:9px;background:rgba(255,255,255,.05)}.daily-reward span{font-size:9px;color:#aab9ad;letter-spacing:.1em}.daily-reward strong{color:#ffd76a}.daily-reward b{margin-left:auto;font-size:10px;color:#9bdb75}.how-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.how-grid>div{padding:14px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}.how-grid b{font-size:11px;color:#b8e88d;letter-spacing:.08em}.how-grid p{font-size:11px;line-height:1.8;color:#c4d1c5;margin:9px 0 0}.how-grid strong{color:#fff}
+@media(max-width:560px){.menu-shell{max-height:96dvh;padding:14px!important}.menu-actions{grid-template-columns:1fr}.menu-action{padding:11px 12px}.menu-profile-strip>div{padding:9px}.menu-profile-strip small{font-size:8px}.menu-footer{align-items:flex-start;flex-direction:column}.menu-stat-grid{grid-template-columns:repeat(2,1fr)}.how-grid{grid-template-columns:1fr}.daily-contract-card{padding:14px}.menu-hero h1{font-size:34px!important}}
 </style></head><body>
 <title>Passeggiata nel Quartiere - Ultimate Edition</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -238,29 +248,69 @@ body.ads #cross{width:12px;height:12px}body.ads #cross::before{left:5px;height:1
 </div></div>
 
 <!-- Main Menu & Overlay -->
-<div id="overlay" style="pointer-events:auto !important; z-index:99999;"><div class="card panel">
-  <h1 id="ovTitle">Passeggiata nel Quartiere</h1>
-  <div class="subtitle" id="ovSubtitle">Neighborhood Tactical Duel</div>
-  <div class="lang-selector">
-    <button class="lang-btn" id="langEnBtn">English 🇬🇧</button>
-    <button class="lang-btn" id="langItBtn">Italiano 🇮🇹</button>
+<div id="overlay" class="main-menu-overlay" style="pointer-events:auto !important; z-index:99999;">
+  <div class="menu-shell panel">
+    <div class="menu-topline"><span class="menu-live-dot"></span> NEIGHBORHOOD TACTICAL DUEL <span class="menu-version">ULTIMATE EDITION</span></div>
+    <section class="menu-page" id="menuHome">
+      <div class="menu-hero">
+        <div class="menu-kicker">YOUR BLOCK. YOUR RULES.</div>
+        <h1 id="ovTitle">PASSEGGIATA<br><em>NEL QUARTIERE</em></h1>
+        <div class="subtitle" id="ovSubtitle">Neighborhood Tactical Duel</div>
+        <p id="ovText">You vs the Rival. Earn coins, unlock weapons, build your career.</p>
+      </div>
+      <div class="menu-profile-strip">
+        <div><small>CAREER RANK</small><strong id="menuRankValue">ROOKIE I</strong></div>
+        <div><small>CAREER XP</small><strong id="menuXPValue">0 XP</strong></div>
+        <div><small>WALLET</small><strong id="menuCoinValue">🪙 0</strong></div>
+      </div>
+      <div class="menu-actions">
+        <button id="go" class="menu-action menu-play" type="button"><span class="menu-action-icon">▶</span><span><b>QUICK PLAY</b><small>Jump straight into a standard duel</small></span><span class="menu-arrow">→</span></button>
+        <button id="menuCustomBtn" class="menu-action menu-custom" type="button"><span class="menu-action-icon">⚔</span><span><b>CUSTOM MATCH</b><small>Build your own battlefield challenge</small></span><span class="menu-arrow">→</span></button>
+        <button id="menuShopBtn" class="menu-action" type="button"><span class="menu-action-icon">▣</span><span><b>WEAPON ARMORY</b><small>Unlock 7 powerful weapons</small></span><span class="menu-arrow">→</span></button>
+        <button id="menuCareerBtn" class="menu-action" type="button"><span class="menu-action-icon">★</span><span><b>CAREER & STATS</b><small>Your rank, progress and records</small></span><span class="menu-arrow">→</span></button>
+        <button id="menuDailyBtn" class="menu-action" type="button"><span class="menu-action-icon">◷</span><span><b>DAILY OPERATIONS</b><small>Complete today's elimination contract</small><span class="menu-new">+250 COINS</span></span><span class="menu-arrow">→</span></button>
+        <button id="menuHowBtn" class="menu-action" type="button"><span class="menu-action-icon">?</span><span><b>HOW TO PLAY</b><small>Controls, combat and survival tips</small></span><span class="menu-arrow">→</span></button>
+        <button id="menuSettingsBtn" class="menu-action menu-settings" type="button"><span class="menu-action-icon">⚙</span><span><b>SETTINGS</b><small>Graphics, shaders, audio and controls</small></span><span class="menu-arrow">→</span></button>
+      </div>
+      <div class="menu-footer">
+        <div class="lang-selector"><button class="lang-btn" id="langEnBtn">English 🇬🇧</button><button class="lang-btn" id="langItBtn">Italiano 🇮🇹</button></div>
+        <span>WASD / TOUCH / CONTROLLER SUPPORTED</span>
+      </div>
+      <ul class="desk menu-old-controls" id="ovDeskControls"><li>WASD: move · Mouse: aim · Left Click: shoot · 1-8: weapons</li><li>R: reload · Shift: sprint · U: settings</li></ul>
+      <ul class="touch-only menu-old-controls" style="display:block" id="ovTouchControls"><li>Joystick: move · Drag right side: aim · FIRE · RELOAD · RUN</li></ul>
+    </section>
+    <section class="menu-page menu-subpage" id="menuCareer" hidden>
+      <div class="menu-page-heading"><span>PLAYER PROFILE</span><h2>CAREER & RECORDS</h2><p>Your progress is saved on this device.</p></div>
+      <div class="menu-stat-grid">
+        <div class="menu-stat"><small>CURRENT RANK</small><strong id="careerRankValue">ROOKIE I</strong></div>
+        <div class="menu-stat"><small>TOTAL XP</small><strong id="careerXPValue">0</strong></div>
+        <div class="menu-stat"><small>COINS</small><strong id="careerCoinsValue">0</strong></div>
+        <div class="menu-stat"><small>BEST STREAK</small><strong id="careerStreakValue">0</strong></div>
+        <div class="menu-stat"><small>WEAPONS UNLOCKED</small><strong id="careerWeaponsValue">1 / 8</strong></div>
+        <div class="menu-stat"><small>NEXT RANK</small><strong id="careerNextValue">500 XP</strong></div>
+      </div>
+      <div class="menu-progress-label"><span>RANK PROGRESS</span><b id="careerProgressText">0 / 500 XP</b></div><div class="menu-progress"><i id="careerProgressFill"></i></div>
+      <div class="menu-sub-actions"><button id="careerShopBtn" class="btn-gold">VISIT ARMORY</button><button id="careerBackBtn" class="btn-sec">BACK TO MENU</button></div>
+    </section>
+    <section class="menu-page menu-subpage" id="menuDaily" hidden>
+      <div class="menu-page-heading"><span>DAILY OPERATIONS</span><h2>THE ELIMINATION CONTRACT</h2><p>A fresh challenge every day. Make every shot count.</p></div>
+      <div class="daily-contract-card"><div class="daily-contract-icon">🎯</div><div><small>TODAY'S OBJECTIVE</small><h3>ELIMINATE 8 RIVALS</h3><p>Win duels and build your career while completing the contract.</p></div></div>
+      <div class="menu-progress-label"><span>CONTRACT PROGRESS</span><b id="dailyProgressText">0 / 8</b></div><div class="menu-progress"><i id="dailyProgressFill"></i></div>
+      <div class="daily-reward"><span>COMPLETION REWARD</span><strong>🪙 250 COINS</strong><b id="dailyStatus">IN PROGRESS</b></div>
+      <div class="menu-sub-actions"><button id="dailyPlayBtn" class="btn-main">PLAY & COMPLETE CONTRACT</button><button id="dailyBackBtn" class="btn-sec">BACK TO MENU</button></div>
+    </section>
+    <section class="menu-page menu-subpage" id="menuHow" hidden>
+      <div class="menu-page-heading"><span>FIELD MANUAL</span><h2>HOW TO PLAY</h2><p>Know your controls. Watch your health. Don't waste ammo.</p></div>
+      <div class="how-grid">
+        <div><b>⌨ DESKTOP</b><p><strong>W A S D</strong> Move<br><strong>MOUSE</strong> Aim<br><strong>LEFT CLICK</strong> Shoot<br><strong>RIGHT CLICK</strong> Aim down sights<br><strong>R</strong> Reload · <strong>SHIFT</strong> Sprint<br><strong>SPACE</strong> Jump · <strong>1–8</strong> Weapons</p></div>
+        <div><b>☝ MOBILE</b><p><strong>LEFT JOYSTICK</strong> Move<br><strong>DRAG RIGHT</strong> Aim<br><strong>FIRE</strong> Shoot<br><strong>RUN / JUMP</strong> Move faster / jump<br><strong>RELOAD</strong> Refill magazine<br><strong>AIM</strong> Zoom in</p></div>
+        <div><b>🎮 CONTROLLER</b><p><strong>LEFT STICK</strong> Move<br><strong>RIGHT STICK</strong> Aim<br><strong>RT / R2</strong> Fire<br><strong>LT / L2</strong> Aim<br><strong>A / CROSS</strong> Jump<br><strong>X / SQUARE</strong> Reload</p></div>
+        <div><b>💡 FIELD TIPS</b><p>Yellow crates restore ammo. Green crosses restore health. Headshots deal extra damage. Eliminations earn coins and XP. Spend coins in the Armory to unlock new weapons.</p></div>
+      </div>
+      <div class="menu-sub-actions"><button id="howBackBtn" class="btn-sec">BACK TO MENU</button></div>
+    </section>
   </div>
-  <p id="ovText">You vs the Rival. First to 5 eliminations wins. Yellow crates refill ammo, green crosses heal your health.</p>
-  <ul class="desk" id="ovDeskControls">
-    <li>WASD: move · Mouse: aim · Left Click: shoot · 1-8: weapons</li>
-    <li>R: reload · Shift: sprint · U: settings</li>
-  </ul>
-  <ul class="touch-only" style="display:block" id="ovTouchControls">
-    <li>Joystick: move · Drag right side: aim</li>
-    <li>FIRE hold: shoot · RELOAD · RUN</li>
-  </ul>
-  <div class="btn-group">
-    <button id="go" class="btn-main" type="button">Start Duel</button>
-    <button id="menuShopBtn" class="btn-gold" type="button">Weapon Armory Shop 🪙</button>
-    <button id="menuCustomBtn" class="btn-cyan" type="button">Custom Duel Mode ⚔️</button>
-    <button id="menuSettingsBtn" class="btn-sec" type="button">Settings ⚙</button>
-  </div>
-</div></div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
@@ -374,7 +424,7 @@ function applyLanguage(lang){
   localStorage.setItem('pnq_lang', lang);
   const t = i18n[lang];
   
-  $('ovTitle').textContent = t.title;
+  $('ovTitle').innerHTML = 'PASSEGGIATA<br><em>NEL QUARTIERE</em>';
   $('ovSubtitle').textContent = t.subtitle;
   $('ovText').textContent = t.desc;
   $('ovDeskControls').innerHTML = t.deskControls;
@@ -950,8 +1000,8 @@ document.querySelectorAll('.wslot').forEach(btn=>{
 
 /* Settings & UI Listeners */
 $('settingsBtn').addEventListener('click',toggleSettings);
-$('menuSettingsBtn').addEventListener('click',()=>{ $('settingsPanel').hidden=false; });
-$('settingsClose').addEventListener('click',()=>{$('settingsPanel').hidden=true;if(state==='pause'){state='play';lock();}});
+$('menuSettingsBtn').addEventListener('click',()=>{ $('overlay').hidden=true;$('settingsPanel').hidden=false; });
+$('settingsClose').addEventListener('click',()=>{$('settingsPanel').hidden=true;if(state==='pause'){state='play';lock();}else if(state==='menu'||state==='over')$('overlay').hidden=false;});
 
 $('langEnBtn').addEventListener('click',()=>applyLanguage('en'));
 $('langItBtn').addEventListener('click',()=>applyLanguage('it'));
@@ -1065,8 +1115,8 @@ function updateShopUI(){
   });
 }
 
-$('menuShopBtn').addEventListener('click',()=>{ updateShopUI(); $('shopPanel').hidden=false; });
-$('shopClose').addEventListener('click',()=>{$('shopPanel').hidden=true;});
+$('menuShopBtn').addEventListener('click',()=>{ updateShopUI(); $('overlay').hidden=true; $('shopPanel').hidden=false; });
+$('shopClose').addEventListener('click',()=>{$('shopPanel').hidden=true;if(state==='menu'||state==='pause'||state==='over')$('overlay').hidden=false;});
 
 Object.keys(weapons).forEach(wKey=>{
   if(wKey==='pistol')return;
@@ -1087,8 +1137,8 @@ Object.keys(weapons).forEach(wKey=>{
 });
 
 /* Custom Mode Sandbox Listeners */
-$('menuCustomBtn').addEventListener('click',()=>{$('customPanel').hidden=false;});
-$('customClose').addEventListener('click',()=>{$('customPanel').hidden=true;});
+$('menuCustomBtn').addEventListener('click',()=>{$('overlay').hidden=true;$('customPanel').hidden=false;});
+$('customClose').addEventListener('click',()=>{$('customPanel').hidden=true;if(state==='menu'||state==='pause'||state==='over')$('overlay').hidden=false;});
 
 $('rivalCount').addEventListener('input',e=>{$('rivalCountVal').textContent=e.target.value;customConfig.rivalCount=+e.target.value;});
 $('targetKills').addEventListener('input',e=>{$('targetKillsVal').textContent=e.target.value;customConfig.targetKills=+e.target.value;});
@@ -1105,7 +1155,31 @@ $('startCustomDuel').addEventListener('click',()=>{
   setADS(false);lock();last=performance.now();
 });
 
-function showOverlay(t,p,b){$('ovTitle').textContent=t;$('ovText').textContent=p;$('go').textContent=b;$('overlay').hidden=false;}
+function showOverlay(t,p,b){$('ovTitle').textContent=t;$('ovText').textContent=p;$('go').textContent=b;$('overlay').hidden=false;openMenuPage('home');}
+function openMenuPage(page){
+  document.querySelectorAll('.menu-page').forEach(p=>p.hidden=true);
+  const target=$('menu'+page.charAt(0).toUpperCase()+page.slice(1));
+  if(target)target.hidden=false;
+  refreshMenuStats();
+}
+function refreshMenuStats(){
+  const r=rankInfo(),unlocked=unlockedWeapons.length;
+  const put=(id,value)=>{const el=$(id);if(el)el.textContent=value;};
+  put('menuRankValue',r.name);put('menuXPValue',careerXP.toLocaleString()+' XP');put('menuCoinValue','🪙 '+playerCoins.toLocaleString());
+  put('careerRankValue',r.name);put('careerXPValue',careerXP.toLocaleString());put('careerCoinsValue',playerCoins.toLocaleString());
+  put('careerStreakValue',bestStreak);put('careerWeaponsValue',unlocked+' / 8');put('careerNextValue',(500-r.progress)+' XP');
+  put('careerProgressText',r.progress+' / 500 XP');
+  const fill=$('careerProgressFill');if(fill)fill.style.width=(r.progress/500*100)+'%';
+  put('dailyProgressText',Math.min(dailyKills,DAILY_GOAL)+' / '+DAILY_GOAL);
+  const dailyFill=$('dailyProgressFill');if(dailyFill)dailyFill.style.width=(Math.min(dailyKills,DAILY_GOAL)/DAILY_GOAL*100)+'%';
+  put('dailyStatus',dailyClaimed?'✓ COMPLETED · REWARD CLAIMED':'IN PROGRESS');
+  const status=$('dailyStatus');if(status)status.style.color=dailyClaimed?'#9bdb75':'#e8c65b';
+}
+['career','daily','how'].forEach(page=>{const btn=$('menu'+page.charAt(0).toUpperCase()+page.slice(1)+'Btn');if(btn)btn.addEventListener('click',()=>openMenuPage(page));});
+['careerBack','dailyBack','howBack'].forEach(id=>$(id+'Btn').addEventListener('click',()=>openMenuPage('home')));
+$('careerShopBtn').addEventListener('click',()=>{$('overlay').hidden=true;updateShopUI();$('shopPanel').hidden=false;});
+$('dailyPlayBtn').addEventListener('click',()=>{$('overlay').hidden=false;openMenuPage('home');$('go').click();});
+
 $('go').addEventListener('click',()=>{
   if(!actx){try{actx=new (window.AudioContext||window.webkitAudioContext)();}catch(e){}}
   customConfig.active = false;
