@@ -1,4 +1,28 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
+/* Ultimate progression HUD */
+#metaHud{position:fixed;left:12px;bottom:150px;width:220px;padding:11px 13px;z-index:3;pointer-events:none}
+#metaHud .metaTop{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:800;letter-spacing:.06em}
+#rankName{color:var(--gold);font-family:var(--f-display)}
+#xpTrack{height:7px;background:rgba(255,255,255,.14);border-radius:8px;overflow:hidden;margin:7px 0 9px}
+#xpFill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--cyan));transition:width .25s}
+#contractTitle{font-size:10px;opacity:.7;text-transform:uppercase;letter-spacing:.1em}
+#contractLine{font-size:12px;margin-top:3px}
+#contractTrack{height:5px;background:rgba(255,255,255,.13);border-radius:8px;overflow:hidden;margin-top:6px}
+#contractFill{height:100%;width:0;background:var(--gold);transition:width .25s}
+#streakLabel{color:#ff9d45;font-weight:800}
+@media(max-width:560px){#metaHud{left:10px;bottom:158px;width:172px;padding:8px 10px}#metaHud .metaTop{font-size:10px}#contractLine{font-size:10px}#contractTitle{font-size:9px}}
+@media(max-height:650px){#metaHud{display:none}}
+
+/* Ultimate main menu */
+.main-menu-overlay{background:radial-gradient(ellipse at 50% 0%,rgba(67,112,70,.35),transparent 58%),linear-gradient(135deg,rgba(3,9,7,.84),rgba(5,14,12,.94))!important;overflow-y:auto;place-items:center;padding-top:18px;padding-bottom:18px}
+.menu-shell{width:min(780px,100%);max-height:min(94dvh,980px);overflow-y:auto;padding:clamp(17px,3vw,30px)!important;text-align:left!important;border:1px solid rgba(172,226,151,.24)!important;background:linear-gradient(145deg,rgba(12,25,19,.97),rgba(5,12,11,.97))!important;box-shadow:0 25px 90px rgba(0,0,0,.65),inset 0 1px rgba(255,255,255,.05)!important}
+.menu-topline{font-size:10px;font-weight:900;letter-spacing:.16em;color:#a8d68c;display:flex;align-items:center;gap:9px;margin-bottom:20px}.menu-live-dot{width:7px;height:7px;border-radius:50%;background:#8cdb59;box-shadow:0 0 12px #8cdb59}.menu-version{margin-left:auto;color:#8a9a8d;font-size:9px}
+.menu-hero{padding:clamp(17px,3vw,27px);border-radius:13px;background:linear-gradient(110deg,rgba(92,146,64,.22),rgba(8,21,17,.18)),repeating-linear-gradient(135deg,rgba(255,255,255,.025) 0 1px,transparent 1px 9px);border:1px solid rgba(255,255,255,.09);position:relative;overflow:hidden}.menu-hero:after{content:'⚔';position:absolute;right:7%;top:8%;font-size:clamp(80px,15vw,150px);color:rgba(183,229,148,.07);transform:rotate(-15deg);pointer-events:none}.menu-kicker{font-size:10px;letter-spacing:.22em;color:#b4e48b;font-weight:900}.menu-hero h1{font-size:clamp(30px,6vw,52px)!important;line-height:.96;letter-spacing:-.05em!important;margin:12px 0 8px!important}.menu-hero h1 em{font-style:normal;color:#a8dc75}.menu-hero .subtitle{font-size:11px;letter-spacing:.18em;margin:12px 0!important;color:#c4d6c7}.menu-hero p{font-size:13px!important;color:#d1ddd2;max-width:430px;margin:8px 0 0!important}
+.menu-profile-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}.menu-profile-strip>div,.menu-stat{padding:12px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);border-radius:9px;min-width:0}.menu-profile-strip small,.menu-stat small{display:block;font-size:9px;letter-spacing:.12em;color:#8ea394;font-weight:800;margin-bottom:5px}.menu-profile-strip strong{font-size:clamp(12px,2.3vw,16px);color:#e8f3e8;overflow-wrap:anywhere}
+.menu-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}.menu-action{display:flex;align-items:center;gap:12px;text-align:left;min-width:0;padding:13px 14px;border:1px solid rgba(255,255,255,.1);border-radius:10px;background:rgba(255,255,255,.055);color:#f3f6f1;transition:transform .16s,border-color .16s,background .16s}.menu-action:hover{transform:translateY(-2px);background:rgba(255,255,255,.1);border-color:rgba(167,221,126,.5)}.menu-action b,.menu-action small{display:block}.menu-action b{font-size:12px;letter-spacing:.06em}.menu-action small{font-size:10px;color:#aab9ad;margin-top:4px;line-height:1.35}.menu-action-icon{width:34px;height:34px;flex:0 0 34px;display:grid;place-items:center;border-radius:9px;background:rgba(255,255,255,.08);font-size:19px;color:#b7e88b}.menu-arrow{margin-left:auto;color:#8fae91;font-size:19px}.menu-play{background:linear-gradient(110deg,rgba(124,192,74,.27),rgba(124,192,74,.08));border-color:rgba(124,192,74,.48)}.menu-play .menu-action-icon{background:#8bc95b;color:#12200d}.menu-custom{background:rgba(0,240,255,.055);border-color:rgba(0,240,255,.2)}.menu-new{display:inline-block;margin-top:5px;color:#ffd76a;font-size:9px;font-weight:900;letter-spacing:.08em}.menu-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:15px;padding-top:12px;border-top:1px solid rgba(255,255,255,.09)}.menu-footer .lang-selector{margin:0}.menu-footer>span{font-size:8px;letter-spacing:.1em;color:#778b7c}.menu-old-controls{display:none!important}
+.menu-subpage{padding:6px 0 0}.menu-page-heading>span{font-size:10px;letter-spacing:.2em;color:#a8dc75;font-weight:900}.menu-page-heading h2{font-size:clamp(23px,4vw,34px)!important;margin:8px 0!important}.menu-page-heading p{font-size:12px;color:#aab9ad;margin:0 0 20px}.menu-stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.menu-stat strong{font-size:clamp(16px,3vw,23px);color:#f1f6ed;overflow-wrap:anywhere}.menu-progress-label{display:flex;justify-content:space-between;gap:10px;margin:18px 0 7px;font-size:10px;letter-spacing:.1em;color:#a6b6a8}.menu-progress-label b{color:#e7f3e3}.menu-progress{height:9px;background:rgba(255,255,255,.1);border-radius:9px;overflow:hidden}.menu-progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#7cc04a,#00e0ce);border-radius:9px;transition:width .25s}.menu-sub-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.menu-sub-actions button{flex:1;min-width:150px}.daily-contract-card{display:flex;gap:16px;align-items:center;padding:20px;border:1px solid rgba(255,215,0,.25);border-radius:12px;background:linear-gradient(110deg,rgba(255,215,0,.1),rgba(255,255,255,.025))}.daily-contract-icon{font-size:35px}.daily-contract-card small{font-size:9px;color:#e8c65b;letter-spacing:.14em;font-weight:900}.daily-contract-card h3{font-size:19px;margin:6px 0}.daily-contract-card p{font-size:11px;color:#aab9ad;margin:0}.daily-reward{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:16px;padding:13px;border-radius:9px;background:rgba(255,255,255,.05)}.daily-reward span{font-size:9px;color:#aab9ad;letter-spacing:.1em}.daily-reward strong{color:#ffd76a}.daily-reward b{margin-left:auto;font-size:10px;color:#9bdb75}.how-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.how-grid>div{padding:14px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}.how-grid b{font-size:11px;color:#b8e88d;letter-spacing:.08em}.how-grid p{font-size:11px;line-height:1.8;color:#c4d1c5;margin:9px 0 0}.how-grid strong{color:#fff}
+@media(max-width:560px){.menu-shell{max-height:96dvh;padding:14px!important}.menu-actions{grid-template-columns:1fr}.menu-action{padding:11px 12px}.menu-profile-strip>div{padding:9px}.menu-profile-strip small{font-size:8px}.menu-footer{align-items:flex-start;flex-direction:column}.menu-stat-grid{grid-template-columns:repeat(2,1fr)}.how-grid{grid-template-columns:1fr}.daily-contract-card{padding:14px}.menu-hero h1{font-size:34px!important}}
+</style></head><body>
 <title>Passeggiata nel Quartiere - Ultimate Edition</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
@@ -143,6 +167,13 @@ body.ads #cross{width:12px;height:12px}body.ads #cross::before{left:5px;height:1
 <button id="ads" class="tbtn touch-only" type="button">AIM</button>
 <button id="settingsBtn" type="button">⚙ SETTINGS</button>
 <div id="level" class="panel">LEVEL 1 · NOVICE</div>
+<div id="metaHud" class="panel">
+  <div class="metaTop"><span id="rankName">ROOKIE I</span><span id="streakLabel">🔥 0 STREAK</span></div>
+  <div id="xpTrack"><div id="xpFill"></div></div>
+  <div id="contractTitle">DAILY CONTRACT</div>
+  <div id="contractLine">Get 8 eliminations · 0/8</div>
+  <div id="contractTrack"><div id="contractFill"></div></div>
+</div>
 
 <!-- Settings Panel -->
 <div id="settingsPanel" hidden><div class="card panel">
@@ -150,6 +181,8 @@ body.ads #cross{width:12px;height:12px}body.ads #cross::before{left:5px;height:1
   <div class="setting"><label for="langSelect" id="lblLang">Language</label><select id="langSelect"><option value="en">English 🇬🇧</option><option value="it">Italiano 🇮🇹</option></select></div>
   <div class="setting"><label for="diffSelect" id="lblDiff">Duel Difficulty</label><select id="diffSelect"><option value="1">1. Novice</option><option value="2">2. Veteran</option><option value="3">3. Elite</option><option value="4">4. Legendary</option><option value="5">5. Nightmare 💀</option></select></div>
   <div class="setting"><label for="themeSelect" id="lblTheme">Graphics Preset</label><select id="themeSelect"><option value="day">Daylight Neighborhood</option><option value="neon">Neon Night Cyber</option><option value="synth">Synthwave Sunset</option><option value="retro">Retro Foggy</option></select></div>
+  <div class="setting"><label for="shaderSelect" id="lblShaders">Screen Shaders</label><select id="shaderSelect"><option value="off">Off · Original</option><option value="cinematic">Cinematic</option><option value="retro">Retro Pixel</option><option value="noir">Noir / Black &amp; White</option><option value="dream">Dream / Chromatic</option><option value="crt">CRT Arcade</option></select></div>
+  <div class="setting"><label for="shaderIntensity" id="lblShaderIntensity">Shader Intensity</label><strong id="shaderIntensityVal">85%</strong><input id="shaderIntensity" type="range" min="0" max="100" step="5" value="85"></div>
   <div class="setting"><label for="crossColor" id="lblCrossColor">Crosshair Color</label><select id="crossColor"><option value="#ffffff">White</option><option value="#7cc04a">Neon Green</option><option value="#00f0ff">Cyber Cyan</option><option value="#ff0055">Hot Pink</option><option value="#ffd700">Gold</option></select></div>
   <div class="setting"><label for="crossStyle" id="lblCross">Crosshair Style</label><select id="crossStyle"><option value="default">Cross</option><option value="dot">Dot</option><option value="circle">Circle</option></select></div>
   <div class="setting"><label for="soundStyle" id="lblSoundStyle">Hit Sound FX</label><select id="soundStyle"><option value="classic">Classic Arcade</option><option value="laser">Futuristic Laser</option><option value="heavy">Heavy Kick</option></select></div>
@@ -215,29 +248,69 @@ body.ads #cross{width:12px;height:12px}body.ads #cross::before{left:5px;height:1
 </div></div>
 
 <!-- Main Menu & Overlay -->
-<div id="overlay" style="pointer-events:auto !important; z-index:99999;"><div class="card panel">
-  <h1 id="ovTitle">Passeggiata nel Quartiere</h1>
-  <div class="subtitle" id="ovSubtitle">Neighborhood Tactical Duel</div>
-  <div class="lang-selector">
-    <button class="lang-btn" id="langEnBtn">English 🇬🇧</button>
-    <button class="lang-btn" id="langItBtn">Italiano 🇮🇹</button>
+<div id="overlay" class="main-menu-overlay" style="pointer-events:auto !important; z-index:99999;">
+  <div class="menu-shell panel">
+    <div class="menu-topline"><span class="menu-live-dot"></span> NEIGHBORHOOD TACTICAL DUEL <span class="menu-version">ULTIMATE EDITION</span></div>
+    <section class="menu-page" id="menuHome">
+      <div class="menu-hero">
+        <div class="menu-kicker">YOUR BLOCK. YOUR RULES.</div>
+        <h1 id="ovTitle">PASSEGGIATA<br><em>NEL QUARTIERE</em></h1>
+        <div class="subtitle" id="ovSubtitle">Neighborhood Tactical Duel</div>
+        <p id="ovText">You vs the Rival. Earn coins, unlock weapons, build your career.</p>
+      </div>
+      <div class="menu-profile-strip">
+        <div><small>CAREER RANK</small><strong id="menuRankValue">ROOKIE I</strong></div>
+        <div><small>CAREER XP</small><strong id="menuXPValue">0 XP</strong></div>
+        <div><small>WALLET</small><strong id="menuCoinValue">🪙 0</strong></div>
+      </div>
+      <div class="menu-actions">
+        <button id="go" class="menu-action menu-play" type="button"><span class="menu-action-icon">▶</span><span><b>QUICK PLAY</b><small>Jump straight into a standard duel</small></span><span class="menu-arrow">→</span></button>
+        <button id="menuCustomBtn" class="menu-action menu-custom" type="button"><span class="menu-action-icon">⚔</span><span><b>CUSTOM MATCH</b><small>Build your own battlefield challenge</small></span><span class="menu-arrow">→</span></button>
+        <button id="menuShopBtn" class="menu-action" type="button"><span class="menu-action-icon">▣</span><span><b>WEAPON ARMORY</b><small>Unlock 7 powerful weapons</small></span><span class="menu-arrow">→</span></button>
+        <button id="menuCareerBtn" class="menu-action" type="button"><span class="menu-action-icon">★</span><span><b>CAREER & STATS</b><small>Your rank, progress and records</small></span><span class="menu-arrow">→</span></button>
+        <button id="menuDailyBtn" class="menu-action" type="button"><span class="menu-action-icon">◷</span><span><b>DAILY OPERATIONS</b><small>Complete today's elimination contract</small><span class="menu-new">+250 COINS</span></span><span class="menu-arrow">→</span></button>
+        <button id="menuHowBtn" class="menu-action" type="button"><span class="menu-action-icon">?</span><span><b>HOW TO PLAY</b><small>Controls, combat and survival tips</small></span><span class="menu-arrow">→</span></button>
+        <button id="menuSettingsBtn" class="menu-action menu-settings" type="button"><span class="menu-action-icon">⚙</span><span><b>SETTINGS</b><small>Graphics, shaders, audio and controls</small></span><span class="menu-arrow">→</span></button>
+      </div>
+      <div class="menu-footer">
+        <div class="lang-selector"><button class="lang-btn" id="langEnBtn">English 🇬🇧</button><button class="lang-btn" id="langItBtn">Italiano 🇮🇹</button></div>
+        <span>WASD / TOUCH / CONTROLLER SUPPORTED</span>
+      </div>
+      <ul class="desk menu-old-controls" id="ovDeskControls"><li>WASD: move · Mouse: aim · Left Click: shoot · 1-8: weapons</li><li>R: reload · Shift: sprint · U: settings</li></ul>
+      <ul class="touch-only menu-old-controls" style="display:block" id="ovTouchControls"><li>Joystick: move · Drag right side: aim · FIRE · RELOAD · RUN</li></ul>
+    </section>
+    <section class="menu-page menu-subpage" id="menuCareer" hidden>
+      <div class="menu-page-heading"><span>PLAYER PROFILE</span><h2>CAREER & RECORDS</h2><p>Your progress is saved on this device.</p></div>
+      <div class="menu-stat-grid">
+        <div class="menu-stat"><small>CURRENT RANK</small><strong id="careerRankValue">ROOKIE I</strong></div>
+        <div class="menu-stat"><small>TOTAL XP</small><strong id="careerXPValue">0</strong></div>
+        <div class="menu-stat"><small>COINS</small><strong id="careerCoinsValue">0</strong></div>
+        <div class="menu-stat"><small>BEST STREAK</small><strong id="careerStreakValue">0</strong></div>
+        <div class="menu-stat"><small>WEAPONS UNLOCKED</small><strong id="careerWeaponsValue">1 / 8</strong></div>
+        <div class="menu-stat"><small>NEXT RANK</small><strong id="careerNextValue">500 XP</strong></div>
+      </div>
+      <div class="menu-progress-label"><span>RANK PROGRESS</span><b id="careerProgressText">0 / 500 XP</b></div><div class="menu-progress"><i id="careerProgressFill"></i></div>
+      <div class="menu-sub-actions"><button id="careerShopBtn" class="btn-gold">VISIT ARMORY</button><button id="careerBackBtn" class="btn-sec">BACK TO MENU</button></div>
+    </section>
+    <section class="menu-page menu-subpage" id="menuDaily" hidden>
+      <div class="menu-page-heading"><span>DAILY OPERATIONS</span><h2>THE ELIMINATION CONTRACT</h2><p>A fresh challenge every day. Make every shot count.</p></div>
+      <div class="daily-contract-card"><div class="daily-contract-icon">🎯</div><div><small>TODAY'S OBJECTIVE</small><h3>ELIMINATE 8 RIVALS</h3><p>Win duels and build your career while completing the contract.</p></div></div>
+      <div class="menu-progress-label"><span>CONTRACT PROGRESS</span><b id="dailyProgressText">0 / 8</b></div><div class="menu-progress"><i id="dailyProgressFill"></i></div>
+      <div class="daily-reward"><span>COMPLETION REWARD</span><strong>🪙 250 COINS</strong><b id="dailyStatus">IN PROGRESS</b></div>
+      <div class="menu-sub-actions"><button id="dailyPlayBtn" class="btn-main">PLAY & COMPLETE CONTRACT</button><button id="dailyBackBtn" class="btn-sec">BACK TO MENU</button></div>
+    </section>
+    <section class="menu-page menu-subpage" id="menuHow" hidden>
+      <div class="menu-page-heading"><span>FIELD MANUAL</span><h2>HOW TO PLAY</h2><p>Know your controls. Watch your health. Don't waste ammo.</p></div>
+      <div class="how-grid">
+        <div><b>⌨ DESKTOP</b><p><strong>W A S D</strong> Move<br><strong>MOUSE</strong> Aim<br><strong>LEFT CLICK</strong> Shoot<br><strong>RIGHT CLICK</strong> Aim down sights<br><strong>R</strong> Reload · <strong>SHIFT</strong> Sprint<br><strong>SPACE</strong> Jump · <strong>1–8</strong> Weapons</p></div>
+        <div><b>☝ MOBILE</b><p><strong>LEFT JOYSTICK</strong> Move<br><strong>DRAG RIGHT</strong> Aim<br><strong>FIRE</strong> Shoot<br><strong>RUN / JUMP</strong> Move faster / jump<br><strong>RELOAD</strong> Refill magazine<br><strong>AIM</strong> Zoom in</p></div>
+        <div><b>🎮 CONTROLLER</b><p><strong>LEFT STICK</strong> Move<br><strong>RIGHT STICK</strong> Aim<br><strong>RT / R2</strong> Fire<br><strong>LT / L2</strong> Aim<br><strong>A / CROSS</strong> Jump<br><strong>X / SQUARE</strong> Reload</p></div>
+        <div><b>💡 FIELD TIPS</b><p>Yellow crates restore ammo. Green crosses restore health. Headshots deal extra damage. Eliminations earn coins and XP. Spend coins in the Armory to unlock new weapons.</p></div>
+      </div>
+      <div class="menu-sub-actions"><button id="howBackBtn" class="btn-sec">BACK TO MENU</button></div>
+    </section>
   </div>
-  <p id="ovText">You vs the Rival. First to 5 eliminations wins. Yellow crates refill ammo, green crosses heal your health.</p>
-  <ul class="desk" id="ovDeskControls">
-    <li>WASD: move · Mouse: aim · Left Click: shoot · 1-8: weapons</li>
-    <li>R: reload · Shift: sprint · U: settings</li>
-  </ul>
-  <ul class="touch-only" style="display:block" id="ovTouchControls">
-    <li>Joystick: move · Drag right side: aim</li>
-    <li>FIRE hold: shoot · RELOAD · RUN</li>
-  </ul>
-  <div class="btn-group">
-    <button id="go" class="btn-main" type="button">Start Duel</button>
-    <button id="menuShopBtn" class="btn-gold" type="button">Weapon Armory Shop 🪙</button>
-    <button id="menuCustomBtn" class="btn-cyan" type="button">Custom Duel Mode ⚔️</button>
-    <button id="menuSettingsBtn" class="btn-sec" type="button">Settings ⚙</button>
-  </div>
-</div></div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
@@ -258,6 +331,7 @@ const settings={
   crossColor: localStorage.getItem('pnq_cross_col') || '#ffffff',
   soundStyle: localStorage.getItem('pnq_sound') || 'classic',
   theme: localStorage.getItem('pnq_theme') || 'day',
+  shader: localStorage.getItem('pnq_shader') || 'off',
   difficulty: +localStorage.getItem('pnq_diff') || 1,
   settingsKey: savedSettingsKey
 };
@@ -279,6 +353,14 @@ let ads=false, mouseADS=false, touchADS=false, jumpVelocity=0, jumpHeight=0;
 let level=1, gamepadPrev={jump:false,reload:false};
 let rebindingKey = false;
 let currentWeapon = 'pistol';
+// Career progression persists locally between visits.
+let careerXP = Math.max(0, +(localStorage.getItem('pnq_xp')||0));
+let killStreak = 0;
+let bestStreak = Math.max(0, +(localStorage.getItem('pnq_bestStreak')||0));
+const dailyStamp = new Date().toLocaleDateString('en-CA');
+let dailyKills = localStorage.getItem('pnq_dailyDate')===dailyStamp ? +(localStorage.getItem('pnq_dailyKills')||0) : 0;
+let dailyClaimed = localStorage.getItem('pnq_dailyClaimed')===dailyStamp;
+const DAILY_GOAL = 8;
 const $=id=>document.getElementById(id);
 
 /* ---------- Localization ---------- */
@@ -342,7 +424,7 @@ function applyLanguage(lang){
   localStorage.setItem('pnq_lang', lang);
   const t = i18n[lang];
   
-  $('ovTitle').textContent = t.title;
+  $('ovTitle').innerHTML = 'PASSEGGIATA<br><em>NEL QUARTIERE</em>';
   $('ovSubtitle').textContent = t.subtitle;
   $('ovText').textContent = t.desc;
   $('ovDeskControls').innerHTML = t.deskControls;
@@ -381,6 +463,104 @@ renderer.setSize(innerWidth,innerHeight);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 document.body.prepend(renderer.domElement);
+
+// Full-screen shader pass. The game scene is rendered to a texture, then
+// this lightweight pass grades the final image without changing game assets.
+const shaderTarget = new THREE.WebGLRenderTarget(
+  Math.max(1,Math.floor(innerWidth*renderer.getPixelRatio())),
+  Math.max(1,Math.floor(innerHeight*renderer.getPixelRatio())),
+  {minFilter:THREE.LinearFilter,magFilter:THREE.LinearFilter,format:THREE.RGBAFormat,depthBuffer:true}
+);
+const shaderScene = new THREE.Scene();
+const shaderCamera = new THREE.OrthographicCamera(-1,1,1,-1,0,1);
+const shaderMaterial = new THREE.ShaderMaterial({
+  uniforms:{
+    tDiffuse:{value:shaderTarget.texture},
+    uResolution:{value:new THREE.Vector2(innerWidth*renderer.getPixelRatio(),innerHeight*renderer.getPixelRatio())},
+    uTime:{value:0},
+    uMode:{value:0},
+    uIntensity:{value:0.85}
+  },
+  vertexShader:`varying vec2 vUv;
+    void main(){vUv=uv;gl_Position=vec4(position,1.0);}`,
+  fragmentShader:`uniform sampler2D tDiffuse;
+    uniform vec2 uResolution;
+    uniform float uTime;
+    uniform float uIntensity;
+    uniform int uMode;
+    varying vec2 vUv;
+    float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453123);}
+    float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.0-2.0*f);return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y);}
+    float vignette(vec2 uv,float amount){float d=length((uv-.5)*vec2(1.0,.86));return 1.0-smoothstep(.22,.78,d)*amount;}
+    vec3 filmGrain(vec3 c,vec2 uv,float amount){float n=hash(uv*uResolution+fract(uTime)*71.0)-.5;return c+n*amount;}
+    vec3 sampleRGB(vec2 uv,float shift){return vec3(texture2D(tDiffuse,uv+vec2(shift,0.0)).r,texture2D(tDiffuse,uv).g,texture2D(tDiffuse,uv-vec2(shift,0.0)).b);}
+    void main(){
+      vec2 uv=vUv;
+      vec3 original=texture2D(tDiffuse,uv).rgb;
+      vec3 color=original;
+      float strength=clamp(uIntensity,0.0,1.0);
+      if(uMode==2){
+        float pixelWidth=max(2.0,uResolution.x/420.0);
+        float pixelHeight=max(2.0,uResolution.y/236.0);
+        vec2 cell=vec2(pixelWidth,pixelHeight);
+        uv=(floor(uv*uResolution/cell)*cell+cell*.5)/uResolution;
+        color=texture2D(tDiffuse,uv).rgb;
+        float lum=dot(color,vec3(.299,.587,.114));
+        float dither=(hash(floor(uv*uResolution/2.0))-.5)*.075;
+        color=floor(clamp(color+dither,0.0,1.0)*5.0+.5)/5.0;
+        color=mix(vec3(lum),color,.9);
+        color*=.96+.04*sin(uv.y*uResolution.y*3.14159);
+      }else if(uMode==1){
+        float lum=dot(color,vec3(.2126,.7152,.0722));
+        color=mix(vec3(lum),color,1.22);
+        color=(color-.42)*1.18+.42;
+        vec3 shadows=vec3(.035,.075,.105),highlights=vec3(.12,.065,.025);
+        color+=shadows*(1.0-smoothstep(.08,.62,lum))+highlights*smoothstep(.48,.96,lum);
+        color*=vignette(vUv,.42);
+        color=filmGrain(color,vUv,.025);
+      }else if(uMode==3){
+        float lum=dot(color,vec3(.299,.587,.114));
+        color=vec3(pow(clamp((lum-.38)*1.55+.38,0.0,1.0),.92));
+        color=filmGrain(color,vUv,.055);
+        color*=vignette(vUv,.62);
+      }else if(uMode==4){
+        vec2 centered=uv-.5;
+        float r=length(centered);
+        vec2 warped=uv+centered*r*r*.12;
+        float shift=(.0015+r*.0035)*strength;
+        color=sampleRGB(warped,shift);
+        vec3 glow=texture2D(tDiffuse,warped+vec2(0.0,.002)).rgb;
+        color+=max(glow-vec3(.72),vec3(0.0))*.22;
+        color=mix(color,color*vec3(1.05,.99,1.12),.28);
+        color*=.985+.015*sin(uTime*1.1);
+      }else if(uMode==5){
+        vec2 centered=uv-.5;
+        vec2 curved=centered*(1.0+.12*dot(centered,centered))+.5;
+        color=sampleRGB(curved,.00065);
+        float scan=.86+.14*sin(curved.y*uResolution.y*3.14159);
+        float grille=.96+.04*cos(curved.x*uResolution.x*3.14159);
+        float flicker=.985+.015*noise(vec2(uTime*8.0,1.0));
+        color*=scan*grille*flicker*vignette(curved,.78);
+        if(curved.x<.002||curved.x>.998||curved.y<.002||curved.y>.998)color*=.0;
+        color=filmGrain(color,curved,.018);
+      }
+      color=mix(original,color,strength);
+      gl_FragColor=vec4(color,1.0);
+      #include <tonemapping_fragment>
+      #include <encodings_fragment>
+    }`
+});
+shaderScene.add(new THREE.Mesh(new THREE.PlaneGeometry(2,2),shaderMaterial));
+const shaderModes={off:0,cinematic:1,retro:2,noir:3,dream:4,crt:5};
+function applyShader(mode){
+  if(!Object.prototype.hasOwnProperty.call(shaderModes,mode))mode='off';
+  settings.shader=mode;
+  shaderMaterial.uniforms.uMode.value=shaderModes[mode];
+  localStorage.setItem('pnq_shader',mode);
+}
+const savedShaderIntensity=localStorage.getItem('pnq_shaderIntensity');
+settings.shaderIntensity=savedShaderIntensity===null?85:Math.max(0,Math.min(100,+savedShaderIntensity||0));
+shaderMaterial.uniforms.uIntensity.value=settings.shaderIntensity/100;
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x9fc6e6);
@@ -820,8 +1000,8 @@ document.querySelectorAll('.wslot').forEach(btn=>{
 
 /* Settings & UI Listeners */
 $('settingsBtn').addEventListener('click',toggleSettings);
-$('menuSettingsBtn').addEventListener('click',()=>{ $('settingsPanel').hidden=false; });
-$('settingsClose').addEventListener('click',()=>{$('settingsPanel').hidden=true;if(state==='pause'){state='play';lock();}});
+$('menuSettingsBtn').addEventListener('click',()=>{ $('overlay').hidden=true;$('settingsPanel').hidden=false; });
+$('settingsClose').addEventListener('click',()=>{$('settingsPanel').hidden=true;if(state==='pause'){state='play';lock();}else if(state==='menu'||state==='over')$('overlay').hidden=false;});
 
 $('langEnBtn').addEventListener('click',()=>applyLanguage('en'));
 $('langItBtn').addEventListener('click',()=>applyLanguage('it'));
@@ -836,6 +1016,18 @@ $('diffSelect').addEventListener('change',e=>{
 
 $('themeSelect').value = settings.theme;
 $('themeSelect').addEventListener('change',e=>applyTheme(e.target.value));
+
+$('shaderSelect').value = settings.shader;
+applyShader(settings.shader);
+$('shaderSelect').addEventListener('change',e=>applyShader(e.target.value));
+$('shaderIntensity').value=settings.shaderIntensity;
+$('shaderIntensityVal').textContent=settings.shaderIntensity+'%';
+$('shaderIntensity').addEventListener('input',e=>{
+  settings.shaderIntensity=+e.target.value;
+  shaderMaterial.uniforms.uIntensity.value=settings.shaderIntensity/100;
+  $('shaderIntensityVal').textContent=settings.shaderIntensity+'%';
+  localStorage.setItem('pnq_shaderIntensity',settings.shaderIntensity);
+});
 
 $('crossColor').value = settings.crossColor;
 $('crossColor').addEventListener('change',e=>{
@@ -923,8 +1115,8 @@ function updateShopUI(){
   });
 }
 
-$('menuShopBtn').addEventListener('click',()=>{ updateShopUI(); $('shopPanel').hidden=false; });
-$('shopClose').addEventListener('click',()=>{$('shopPanel').hidden=true;});
+$('menuShopBtn').addEventListener('click',()=>{ updateShopUI(); $('overlay').hidden=true; $('shopPanel').hidden=false; });
+$('shopClose').addEventListener('click',()=>{$('shopPanel').hidden=true;if(state==='menu'||state==='pause'||state==='over')$('overlay').hidden=false;});
 
 Object.keys(weapons).forEach(wKey=>{
   if(wKey==='pistol')return;
@@ -945,8 +1137,8 @@ Object.keys(weapons).forEach(wKey=>{
 });
 
 /* Custom Mode Sandbox Listeners */
-$('menuCustomBtn').addEventListener('click',()=>{$('customPanel').hidden=false;});
-$('customClose').addEventListener('click',()=>{$('customPanel').hidden=true;});
+$('menuCustomBtn').addEventListener('click',()=>{$('overlay').hidden=true;$('customPanel').hidden=false;});
+$('customClose').addEventListener('click',()=>{$('customPanel').hidden=true;if(state==='menu'||state==='pause'||state==='over')$('overlay').hidden=false;});
 
 $('rivalCount').addEventListener('input',e=>{$('rivalCountVal').textContent=e.target.value;customConfig.rivalCount=+e.target.value;});
 $('targetKills').addEventListener('input',e=>{$('targetKillsVal').textContent=e.target.value;customConfig.targetKills=+e.target.value;});
@@ -963,7 +1155,31 @@ $('startCustomDuel').addEventListener('click',()=>{
   setADS(false);lock();last=performance.now();
 });
 
-function showOverlay(t,p,b){$('ovTitle').textContent=t;$('ovText').textContent=p;$('go').textContent=b;$('overlay').hidden=false;}
+function showOverlay(t,p,b){$('ovTitle').textContent=t;$('ovText').textContent=p;$('go').textContent=b;$('overlay').hidden=false;openMenuPage('home');}
+function openMenuPage(page){
+  document.querySelectorAll('.menu-page').forEach(p=>p.hidden=true);
+  const target=$('menu'+page.charAt(0).toUpperCase()+page.slice(1));
+  if(target)target.hidden=false;
+  refreshMenuStats();
+}
+function refreshMenuStats(){
+  const r=rankInfo(),unlocked=unlockedWeapons.length;
+  const put=(id,value)=>{const el=$(id);if(el)el.textContent=value;};
+  put('menuRankValue',r.name);put('menuXPValue',careerXP.toLocaleString()+' XP');put('menuCoinValue','🪙 '+playerCoins.toLocaleString());
+  put('careerRankValue',r.name);put('careerXPValue',careerXP.toLocaleString());put('careerCoinsValue',playerCoins.toLocaleString());
+  put('careerStreakValue',bestStreak);put('careerWeaponsValue',unlocked+' / 8');put('careerNextValue',(500-r.progress)+' XP');
+  put('careerProgressText',r.progress+' / 500 XP');
+  const fill=$('careerProgressFill');if(fill)fill.style.width=(r.progress/500*100)+'%';
+  put('dailyProgressText',Math.min(dailyKills,DAILY_GOAL)+' / '+DAILY_GOAL);
+  const dailyFill=$('dailyProgressFill');if(dailyFill)dailyFill.style.width=(Math.min(dailyKills,DAILY_GOAL)/DAILY_GOAL*100)+'%';
+  put('dailyStatus',dailyClaimed?'✓ COMPLETED · REWARD CLAIMED':'IN PROGRESS');
+  const status=$('dailyStatus');if(status)status.style.color=dailyClaimed?'#9bdb75':'#e8c65b';
+}
+['career','daily','how'].forEach(page=>{const btn=$('menu'+page.charAt(0).toUpperCase()+page.slice(1)+'Btn');if(btn)btn.addEventListener('click',()=>openMenuPage(page));});
+['careerBack','dailyBack','howBack'].forEach(id=>$(id+'Btn').addEventListener('click',()=>openMenuPage('home')));
+$('careerShopBtn').addEventListener('click',()=>{$('overlay').hidden=true;updateShopUI();$('shopPanel').hidden=false;});
+$('dailyPlayBtn').addEventListener('click',()=>{$('overlay').hidden=false;openMenuPage('home');$('go').click();});
+
 $('go').addEventListener('click',()=>{
   if(!actx){try{actx=new (window.AudioContext||window.webkitAudioContext)();}catch(e){}}
   customConfig.active = false;
@@ -975,6 +1191,57 @@ $('go').addEventListener('click',()=>{
 let msgT=0,pickT=0,hitT=0;
 function flashMsg(t,d){$('msg').textContent=t;msgT=d;}
 function pickMsg(t){$('pick').textContent=t;pickT=1.4;}
+function rankInfo(){
+  const names=['ROOKIE','SCOUT','RANGER','VANGUARD','ACE','ELITE','LEGEND'];
+  const rank=Math.floor(careerXP/500);
+  const tier=['I','II','III','IV','V'][Math.floor((careerXP%500)/100)];
+  return {name:rank<names.length?names[rank]+' '+tier:'LEGEND X',progress:careerXP%500};
+}
+function updateProgressHUD(){
+  const r=rankInfo();
+  $('rankName').textContent=r.name;
+  $('xpFill').style.width=(r.progress/500*100)+'%';
+  $('streakLabel').textContent='🔥 '+killStreak+' STREAK';
+  $('contractLine').textContent=dailyClaimed?'✓ CONTRACT COMPLETE · +250 COINS':'Get '+DAILY_GOAL+' eliminations · '+Math.min(dailyKills,DAILY_GOAL)+'/'+DAILY_GOAL;
+  $('contractFill').style.width=(Math.min(dailyKills,DAILY_GOAL)/DAILY_GOAL*100)+'%';
+}
+function weaponReserveBonus(){return 90;}
+function registerElimination(rival){
+  killStreak++;
+  bestStreak=Math.max(bestStreak,killStreak);
+  localStorage.setItem('pnq_bestStreak',bestStreak);
+  const headBonus=rival.lastHitHead?50:0;
+  const streakBonus=Math.min(100,Math.max(0,killStreak-1)*10);
+  const gained=100+headBonus+streakBonus;
+  careerXP+=gained;
+  localStorage.setItem('pnq_xp',careerXP);
+  playerCoins+=30+streakBonus;
+  dailyKills++;
+  localStorage.setItem('pnq_dailyDate',dailyStamp);
+  localStorage.setItem('pnq_dailyKills',dailyKills);
+  let message=(rival.lastHitHead?'🎯 HEADSHOT! ':'ELIMINATION! ')+'+'+gained+' XP · '+killStreak+'× STREAK';
+  // Streak milestones grant tactical boosts so aggressive play has a payoff.
+  if(killStreak===3){
+    player.hp=Math.min(100,player.hp+20);
+    message='⚡ ON A ROLL! +20 HEALTH';
+  }else if(killStreak===5){
+    const weapon=weapons[currentWeapon];
+    const refill=Math.min(weapon.mag-player.mag,player.res);
+    player.mag+=refill;player.res-=refill;
+    message='🔥 UNSTOPPABLE! MAGAZINE REFILLED';
+  }else if(killStreak===10){
+    player.hp=100;player.res=Math.min(240,player.res+weaponReserveBonus());
+    message='👑 LEGENDARY STREAK! FULL HEALTH + AMMO';
+  }
+  if(!dailyClaimed&&dailyKills>=DAILY_GOAL){
+    dailyClaimed=true;playerCoins+=250;
+    localStorage.setItem('pnq_dailyClaimed',dailyStamp);
+    message='🏆 DAILY CONTRACT COMPLETE! +250 COINS';
+  }
+  localStorage.setItem('pnq_coins',playerCoins);
+  flashMsg(message,1.8);
+  updateProgressHUD();
+}
 function updateHUD(){
   const t = i18n[settings.lang];
   const lvlName = customConfig.active ? 'CUSTOM SANDBOX ⚔️' : diffLevels[Math.min(settings.difficulty-1,diffLevels.length-1)].name;
@@ -985,6 +1252,7 @@ function updateHUD(){
   $('ammoTxt').textContent=player.reloadT>0?t.reloadProgress:`${player.mag} / ${player.res}`;
   $('coinsTxt').textContent=`🪙 ${playerCoins}`;
   $('sYou').textContent=score.you;$('sThem').textContent=score.them;
+  updateProgressHUD();
 }
 function hurtFX(){
   const v=$('vign');v.style.transition='none';v.style.opacity=.95;
@@ -1029,6 +1297,7 @@ function playerShoot(){
       const hitRival = rivals.find(r=>r.mesh.userData.hit.includes(o));
       if(hitRival && hitRival.alive){
         const isHead = o.name==='head';
+        hitRival.lastHitHead=isHead;
         const dist = camera.position.distanceTo(end);
         let dmg = wData.dmg;
 
@@ -1063,8 +1332,7 @@ function playerShoot(){
 function enemyDies(targetRival){
   targetRival.alive=false;targetRival.deadT=0;
   score.you++;
-  playerCoins += 30;
-  localStorage.setItem('pnq_coins', playerCoins);
+  registerElimination(targetRival);
   updateHUD();
   const t = i18n[settings.lang];
   flashMsg(t.elimEnemy, 1.4);
@@ -1076,6 +1344,7 @@ function enemyDies(targetRival){
 }
 
 function playerDies(){
+  killStreak=0;
   player.alive=false;score.them++;updateHUD();
   const t = i18n[settings.lang];
   endRound(t.elimPlayer);
@@ -1285,13 +1554,23 @@ function frame(t){const dt=Math.min(.05,(t-last)/1000);last=t;
   for(let i=tracers.length-1;i>=0;i--){tracers[i].t-=dt;tracers[i].l.material.opacity=Math.max(0,tracers[i].t/.07);if(tracers[i].t-.07<=0){scene.remove(tracers[i].l);tracers[i].l.geometry.dispose();tracers.splice(i,1);}}
   msgT-=dt;$('msg').style.opacity=msgT>0?1:0;pickT-=dt;$('pick').style.opacity=pickT>0?1:0;
   hitT-=dt;$('cross').classList.toggle('hit',hitT>0);
-  renderer.render(scene,camera);
+  if(settings.shader==='off'){
+    renderer.setRenderTarget(null);
+    renderer.render(scene,camera);
+  }else{
+    shaderMaterial.uniforms.uTime.value=t*.001;
+    renderer.setRenderTarget(shaderTarget);
+    renderer.clear();
+    renderer.render(scene,camera);
+    renderer.setRenderTarget(null);
+    renderer.render(shaderScene,shaderCamera);
+  }
   drawMap();
   requestAnimationFrame(frame);}
 
 camera.position.set(player.x,curY+EYE,player.z);camera.rotation.set(0,player.yaw,0);
 requestAnimationFrame(frame);
-addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);const w=Math.max(1,Math.floor(innerWidth*renderer.getPixelRatio())),h=Math.max(1,Math.floor(innerHeight*renderer.getPixelRatio()));shaderTarget.setSize(w,h);shaderMaterial.uniforms.uResolution.value.set(w,h);});
 })();
 </script>
 </body></html>
