@@ -449,7 +449,7 @@ const shaderMaterial = new THREE.ShaderMaterial({
         color=mix(vec3(l),color,1.16);
         color=(color-.5)*1.13+.5;
         color*=vec3(1.045,1.015,.965);
-        float vign= smoothstep(.92,.22,length((vUv-.5)*vec2(1.0,.82)));
+        float vign= (1.0-smoothstep(.22,.92,length((vUv-.5)*vec2(1.0,.82))));
         color*=mix(.72,1.08,vign);
       }else if(uMode==2){
         color=floor(color*5.0)/5.0;
@@ -458,7 +458,7 @@ const shaderMaterial = new THREE.ShaderMaterial({
         float l=dot(color,vec3(.299,.587,.114));
         color=vec3(l);
         color=(color-.42)*1.28+.42;
-        color*=smoothstep(.9,.2,length((vUv-.5)*vec2(1.0,.8)))*.38+.62;
+        color*=(1.0-smoothstep(.2,.9,length((vUv-.5)*vec2(1.0,.8))))*.38+.62;
       }else if(uMode==4){
         float shift=1.35/uResolution.x;
         color.r=texture2D(tDiffuse,uv+vec2(shift,0.0)).r;
@@ -467,7 +467,7 @@ const shaderMaterial = new THREE.ShaderMaterial({
         color*=.96+.04*sin(uTime*1.4);
       }else if(uMode==5){
         float scan=.92+.08*sin(vUv.y*uResolution.y*1.15);
-        float vign=smoothstep(.95,.25,length((vUv-.5)*vec2(1.0,.82)));
+        float vign=(1.0-smoothstep(.25,.95,length((vUv-.5)*vec2(1.0,.82))));
         color*=scan*(.72+.28*vign);
         color+=vec3(.012,.018,.025);
       }
